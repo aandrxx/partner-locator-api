@@ -1,5 +1,5 @@
 const express = require('express');
-const initDb = require('./config/db').initDb;
+const { initDb } = require('./config/db');
 const bodyParser = require('body-parser');
 
 const app = express();

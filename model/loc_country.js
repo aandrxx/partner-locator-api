@@ -1,4 +1,4 @@
-const knex = require('../config/db').knex;
+const { knex } = require('../config/db');
 const bookshelf = require('bookshelf')(knex);
 
 const LocCountry = bookshelf.Model.extend({

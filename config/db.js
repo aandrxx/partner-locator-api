@@ -40,5 +40,4 @@ const initDb = async () => {
     }
 };
 
-module.exports.knex = knex;
-module.exports.initDb = initDb;
+module.exports = { knex, initDb };
