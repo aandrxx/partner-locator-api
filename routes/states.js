@@ -7,4 +7,9 @@ const { states } = require('../controllers');
  */
 router.get('/:id', states.getState);
 
+/*
+ * Get items route
+ */
+router.get('/', states.getStates);
+
 module.exports = router;
