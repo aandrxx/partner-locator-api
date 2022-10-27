@@ -1,9 +1,32 @@
 const getPartner = (id) => Number.isInteger(+id);
 
-const getPartners = (query) => {
-    const { id, company, status, logo, address, website, phone, countries_covered, states_covered, ...other } = query;
+const searchPartners = (query) => {
+    const {
+        status,
+        countries_covered_contains,
+        states_covered_contains,
+        searchString,
+        ...other 
+    } = query;
+
     if(Object.keys(other).length > 0) return false;
-    return true;
+
+    let parsedQuery = [];
+
+    if(status) parsedQuery.push(`status = '${status}'`);
+    if(countries_covered_contains) parsedQuery.push(`countries_covered like '%${countries_covered_contains}%'`);
+    if(states_covered_contains) parsedQuery.push(`states_covered like '%${states_covered_contains}%'`);
+
+    if(searchString) {
+        let subQuery = [];
+        const words = searchString.split(' ');
+        words.forEach(word => {
+            subQuery.push(`company like '%${word}%' or address like '%${word}%'`);
+        });
+        parsedQuery.push(`(${subQuery.join(' or ')})`);
+    }
+
+    return `(${parsedQuery.join(' and ')})`;
 }
 
-module.exports = { getPartner, getPartners };
+module.exports = { getPartner, searchPartners };

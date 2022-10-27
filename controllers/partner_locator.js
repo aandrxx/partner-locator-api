@@ -30,15 +30,17 @@ const getPartner = async (req, res) => {
  * @param {Object} req - request object
  * @param {Object} res - response object
  */
- const getPartners = async (req, res) => {
+ const searchPartners = async (req, res) => {
     const { query } = req;
-    if(validator.getPartners(query)) {
+    const parsedQuery = validator.searchPartners(query);
+    if(parsedQuery) {
         try {
-            const partners = await PartnerLocator.find({ ...query }, { require: false });
+            const partners = await PartnerLocator.find(parsedQuery, { require: false });
             if(partners) {
                 res.status(200).json(partners);
             }
         } catch (error) {
+            console.log(error)
             handleError(res, { code: 500, msg: 'SERVER_ERROR' });
         }
     } else {
@@ -46,4 +48,4 @@ const getPartner = async (req, res) => {
     }
 }
 
-module.exports = { getPartner, getPartners };
+module.exports = { getPartner, searchPartners };

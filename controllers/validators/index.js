@@ -1,5 +1,5 @@
 const { getCountry, getCountries } = require('./countries');
-const { getPartner, getPartners } = require('./partner_locator');
+const { getPartner, searchPartners } = require('./partner_locator');
 const { getState, getStates } = require('./states');
 
-module.exports.validator = { getCountry, getCountries, getPartner, getPartners, getState, getStates };
+module.exports.validator = { getCountry, getCountries, getPartner, searchPartners, getState, getStates };
