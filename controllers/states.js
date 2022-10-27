@@ -1,4 +1,5 @@
 const { handleError } = require('../utils/handleError');
+const { validator } = require('./validators');
 const LocState = require('../model/loc_state');
 
 /**
@@ -8,7 +9,7 @@ const LocState = require('../model/loc_state');
  */
 const getState = async (req, res) => {
     const { id } = req.params;
-    if(Number.isInteger(+id)) {
+    if(validator.getState(id)) {
         try {
             const state = await LocState.findOne({ state_id: id }, { require: false });
             if(state) {
@@ -31,7 +32,7 @@ const getState = async (req, res) => {
  */
  const getStates = async (req, res) => {
     const { query } = req;
-    if(query) {
+    if(validator.getStates(query)) {
         try {
             const states = await LocState.find({ ...query }, { require: false });
             if(states) {
