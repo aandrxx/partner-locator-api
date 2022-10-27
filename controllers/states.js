@@ -9,18 +9,18 @@ const LocState = require('../model/loc_state');
 const getState = async (req, res) => {
     const { id } = req.params;
     if(Number.isInteger(+id)) {
-      try {
-        const state = await LocState.findOne({state_id: id}, { require: false });
-        if(state) {
-          res.status(200).json(state);
-        } else {
-            handleError(res, {code: 404, msg: 'NOT_FOUND'});
+        try {
+            const state = await LocState.findOne({ state_id: id }, { require: false });
+            if(state) {
+                res.status(200).json(state);
+            } else {
+                handleError(res, { code: 404, msg: 'NOT_FOUND' });
+            }
+        } catch (error) {
+            handleError(res, { code: 500, msg: 'SERVER_ERROR' });
         }
-      } catch (error) {
-        handleError(res, {code: 500, msg: 'SERVER_ERROR'});
-      }
     } else {
-        handleError(res, {code: 400, msg: 'BAD_REQUEST'});
+        handleError(res, { code: 400, msg: 'BAD_REQUEST' });
     }
 }
 
