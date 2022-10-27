@@ -1,3 +1,4 @@
+const countries = require('./countries');
 const states = require('./states');
 
-module.exports = { states };
+module.exports = { countries, states };
