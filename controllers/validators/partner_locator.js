@@ -19,7 +19,7 @@ const searchPartners = (query) => {
 
     if(searchString) {
         let subQuery = [];
-        const words = searchString.split(' ');
+        const words = searchString.trim().split(' ');
         words.forEach(word => {
             subQuery.push(`company like '%${word}%' or address like '%${word}%'`);
         });
