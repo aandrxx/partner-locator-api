@@ -31,8 +31,8 @@ const getPartner = async (req, res) => {
  * @param {Object} res - response object
  */
  const searchPartners = async (req, res) => {
-    const { query } = req;
-    const parsedQuery = validator.searchPartners(query);
+    const { query, _parsedUrl } = req;
+    const parsedQuery = _parsedUrl.query ? validator.searchPartners(query) : true;
     if(parsedQuery) {
         try {
             const partners = await PartnerLocator.find(parsedQuery, { require: false });

@@ -26,7 +26,7 @@ const searchPartners = (query) => {
         parsedQuery.push(`(${subQuery.join(' or ')})`);
     }
 
-    return `(${parsedQuery.join(' and ')})`;
+    return parsedQuery.length > 0 ? `(${parsedQuery.join(' and ')})` : '';
 }
 
 module.exports = { getPartner, searchPartners };
