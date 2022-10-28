@@ -11,6 +11,9 @@ const PartnerLocator = bookshelf.Model.extend({
     findOne: function(query, options) {
         return this.forge(query).fetch(options);
     },
+    getAllStatuses: function(options) {
+        return this.forge().query({ select: 'status', groupBy: 'status' }).fetchAll(options);
+    }
 });
 
 module.exports = PartnerLocator;

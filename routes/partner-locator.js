@@ -5,11 +5,18 @@ const { partner_locator } = require('../controllers');
 /*
  * Get item route
  */
-router.get('/:id', partner_locator.getPartner);
+router.get('/partners/:id', partner_locator.getPartner);
 
 /*
  * Get items route
  */
-router.get('/', partner_locator.searchPartners);
+router.get('/partners', partner_locator.searchPartners);
+
+module.exports = router;
+
+/*
+ * Get all statuses route
+ */
+router.get('/statuses', partner_locator.getAllStatuses);
 
 module.exports = router;

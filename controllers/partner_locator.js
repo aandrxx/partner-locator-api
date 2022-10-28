@@ -40,7 +40,6 @@ const getPartner = async (req, res) => {
                 res.status(200).json(partners);
             }
         } catch (error) {
-            console.log(error)
             handleError(res, { code: 500, msg: 'SERVER_ERROR' });
         }
     } else {
@@ -48,4 +47,20 @@ const getPartner = async (req, res) => {
     }
 }
 
-module.exports = { getPartner, searchPartners };
+/* Get items function called by route
+* @param {Object} req - request object
+* @param {Object} res - response object
+*/
+const getAllStatuses = async (req, res) => {
+    try {
+        const statuses = await PartnerLocator.getAllStatuses({ require: false });
+        if(statuses) {
+            res.status(200).json(statuses);
+        }
+    } catch (error) {
+        console.log(error)
+        handleError(res, { code: 500, msg: 'SERVER_ERROR' });
+    }
+}
+
+module.exports = { getAllStatuses, getPartner, searchPartners };
