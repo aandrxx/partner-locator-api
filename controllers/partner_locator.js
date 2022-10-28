@@ -58,7 +58,6 @@ const getAllStatuses = async (req, res) => {
             res.status(200).json(statuses);
         }
     } catch (error) {
-        console.log(error)
         handleError(res, { code: 500, msg: 'SERVER_ERROR' });
     }
 }
